@@ -1,0 +1,40 @@
+version: '2'
+services:
+  courierproducer-app:
+    image: courierproducerapp
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+      - 'SPRING_DATA_MONGODB_URI=mongodb://courierproducer-mongodb:27017'
+      - SPRING_DATA_MONGODB_DATABASE=courierproducer
+      - SERVER_PORT=81
+      - SLEEP=15
+      - 'KAFKA_BOOTSTRAPSERVERS=kafka:9092'
+  courierproducer-mongodb:
+    image: 'mongo:4.0.12'
+
+  geolocation-app:
+    image: geolocationapp
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+      - 'SPRING_DATASOURCE_URL=jdbc:mysql://geolocation-mysql:3306/geolocation?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true'
+      - SERVER_PORT=82
+      - SLEEP=15
+      - 'KAFKA_BOOTSTRAPSERVERS=kafka:9092'
+  geolocation-mysql:
+    image: 'mysql:8.0.20'
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=geolocation
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+
+  zookeeper:
+    extends:
+      file: kafka.yml
+      service: zookeeper
+  kafka:
+    extends:
+      file: kafka.yml
+      service: kafka

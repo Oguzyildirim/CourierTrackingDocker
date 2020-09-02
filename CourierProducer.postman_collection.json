@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "a580b7ca-d96b-4fc3-9590-6070b4719d42",
+		"name": "CourierProducer",
+		"description": "Produce kafka queueries ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create coutier",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"courierID\": \"courier5003\",\n     \"lat\": 41.0066851,\n     \"lng\": 28.6552262\n}"
+				},
+				"url": {
+					"raw": "http://172.18.0.7:81/api/couriers",
+					"protocol": "http",
+					"host": [
+						"172",
+						"18",
+						"0",
+						"7"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"couriers"
+					]
+				},
+				"description": "Create coutier"
+			},
+			"response": []
+		},
+		{
+			"name": "Get courier distance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.18.0.3:81/api/couriers/getCourierDistanceByCourierID?courierID=courier5000",
+					"protocol": "http",
+					"host": [
+						"172",
+						"18",
+						"0",
+						"3"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"couriers",
+						"getCourierDistanceByCourierID"
+					],
+					"query": [
+						{
+							"key": "courierID",
+							"value": "courier5000"
+						}
+					]
+				},
+				"description": "Get courier distance"
+			},
+			"response": []
+		},
+		{
+			"name": "Update courier",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5f5013b3ef08a9317106e91d\",\n    \"courierID\": \"courier5000\",\n        \"lat\": 40.9923307,\n        \"lng\": 29.1244229\n}"
+				},
+				"url": {
+					"raw": "http://172.18.0.3:81/api/couriers",
+					"protocol": "http",
+					"host": [
+						"172",
+						"18",
+						"0",
+						"3"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"couriers"
+					]
+				},
+				"description": "Update courier"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all couriers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.18.0.3:81/api/couriers",
+					"protocol": "http",
+					"host": [
+						"172",
+						"18",
+						"0",
+						"3"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"couriers"
+					]
+				},
+				"description": "Get all couiers"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete courier",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://172.18.0.6:81/api/couriers/id",
+					"protocol": "http",
+					"host": [
+						"172",
+						"18",
+						"0",
+						"6"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"couriers",
+						"id"
+					]
+				},
+				"description": "Delete courier"
+			},
+			"response": []
+		}
+	]
+}
